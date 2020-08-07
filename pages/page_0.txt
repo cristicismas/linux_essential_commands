@@ -1,0 +1,12 @@
+<Hi!>
+
+This is a small program made to help you learn some basic linux commands.
+
+You are in a terminal window right now. From this window, you can run very powerful commands that let you control your system (or other systems).
+
+This is by no means a complete linux mastery tutorial, but rather it is supposed to give you some direction and teach you to be self-sufficient enough to learn more stuff.
+
+I recommend opening another terminal window (usually done by pressing CTRL + ALT + T), to test new commands as soon as you learn them.
+
+To go to the next 'page', press <ENTER>.
+
