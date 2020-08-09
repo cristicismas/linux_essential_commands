@@ -20,7 +20,7 @@ pub fn print_page(page_number: &usize) -> Result<()> {
     Ok(())
 }
 
-fn normal_print(text: &str) -> Result<()> {
+pub fn normal_print(text: &str) -> Result<()> {
     execute!(
         stdout(),
         Print(text)
@@ -29,10 +29,21 @@ fn normal_print(text: &str) -> Result<()> {
     Ok(())
 }
 
-fn accent_print(text: &str) -> Result<()> {
+pub fn accent_print(text: &str) -> Result<()> {
     execute!(
         stdout(),
         SetForegroundColor(Color::Yellow),
+        Print(text),
+        ResetColor
+    )?;
+
+    Ok(())
+}
+
+pub fn error_print(text: &str) -> Result<()> {
+    execute!(
+        stdout(),
+        SetForegroundColor(Color::Red),
         Print(text),
         ResetColor
     )?;

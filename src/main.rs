@@ -24,7 +24,7 @@ fn main() -> Result<()> {
     if args.len() == 2 {
         page_number = match args[1].parse::<usize>() {
             Err(_) => {
-                eprintln!("The page number must be a valid, positive integer.\n");
+                printer::error_print("The page number must be a valid, positive integer.\n")?;
                 process::exit(1);
             },
             Ok(value) => value
