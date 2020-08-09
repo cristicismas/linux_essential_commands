@@ -21,9 +21,7 @@ impl PageElement {
 pub fn parse_page(page_number: &usize) -> Vec<PageElement> {
     let mut page_elements: Vec<PageElement> = vec![];
 
-    let mut path_to_page = String::from("pages/page_");
-    path_to_page.push_str(&*page_number.to_string());
-    path_to_page.push_str(".txt");
+    let path_to_page = format!("pages/page_{}.txt", page_number);
 
     let content = fs::read_to_string(path_to_page).expect("Something went wrong reading the file.");
 
