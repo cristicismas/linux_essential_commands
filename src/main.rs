@@ -5,6 +5,8 @@ use printer::print_page;
 
 use std::io::{stdout, Write};
 use std::env;
+use std::process;
+
 use crossterm::{
     execute,
     terminal::{Clear, ClearType},
@@ -20,7 +22,13 @@ fn main() -> Result<()> {
     // The first arg is the program name, and the second is the page to display.
     let args: Vec<String> = env::args().collect();
     if args.len() == 2 {
-        page_number = args[1].parse::<usize>().expect("The program argument (the page number) must be a valid integer.");
+        page_number = match args[1].parse::<usize>() {
+            Err(_) => {
+                eprintln!("The page number must be a valid, positive integer.\n");
+                process::exit(1);
+            },
+            Ok(value) => value
+        };
     }
 
     print_page(&page_number)?;
