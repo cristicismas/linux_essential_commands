@@ -1,4 +1,5 @@
 use std::fs;
+use std::process;
 
 pub struct PageElement {
     pub is_colored: bool,
@@ -23,7 +24,15 @@ pub fn parse_page(page_number: &usize) -> Vec<PageElement> {
 
     let path_to_page = format!("pages/page_{}.txt", page_number);
 
-    let content = fs::read_to_string(path_to_page).expect("Something went wrong reading the file.");
+    let content = match fs::read_to_string(path_to_page) {
+        Ok(content) => content,
+        Err(_) => {
+            println!("Congrats! You've reached the end of this program.\n");
+            println!("Now you are aware of some of the most used linux commands.\n");
+            println!("You've still got a long way to go, but now that you have the basics down, it's a lot easier to get started with other commands.\n");
+            process::exit(0);
+        }
+    };
 
     for line in content.lines() {
         // If the line contains "<", there is some accent in the page, in which case looping through the chars is necessary.
