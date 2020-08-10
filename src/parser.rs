@@ -1,6 +1,7 @@
 use std::fs;
 use std::process;
 
+#[derive(Debug, Clone)]
 pub struct PageElement {
     pub is_colored: bool,
     pub text: String
@@ -50,6 +51,10 @@ pub fn parse_page(page_number: &usize) -> Vec<PageElement> {
                 } else {
                     current_line_element.add_char(character);
                 }
+            }
+            
+            if current_line_element.text.len() > 0 {
+                page_elements.push(current_line_element);
             }
         } else {
             let mut element = PageElement::new(false, line);
