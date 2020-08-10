@@ -1,0 +1,6 @@
+First command: <ls>
+
+<ls> shows all the files in the directory (folder) you are currently in.
+
+Go ahead, try it out! Open a terminal, type <ls> and press <Enter>. The terminal will display some files and folders.
+

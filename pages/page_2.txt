@@ -1,0 +1,12 @@
+Second command, and possibly the most important one: <man>
+
+While <ls> might seem like a simple command, like many linux commands, it has many options and it is much more powerful than you might think.
+
+Whenever you want to find a command's options or advanced usage, there is another command to help you out: <man>, short for <manual>.
+
+This command will display all of the options that a command has, and a summary about what it does.
+
+To exit the program, use <Ctrl + C>. This is the shortcut you usually use to close terminal programs in linux.
+
+Type <man ls> and see what happens.
+
