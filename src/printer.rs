@@ -1,5 +1,5 @@
 use super::parser;
-use std::io::{stdout, Write};
+use std::io::{stdout, stderr, Write};
 use crossterm::{
     execute,
     style::{Color, Print, ResetColor, SetForegroundColor},
@@ -42,7 +42,7 @@ pub fn accent_print(text: &str) -> Result<()> {
 
 pub fn error_print(text: &str) -> Result<()> {
     execute!(
-        stdout(),
+        stderr(),
         SetForegroundColor(Color::Red),
         Print(text),
         ResetColor
