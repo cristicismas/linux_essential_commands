@@ -1,0 +1,18 @@
+Third command: <cd>
+
+You know how to list the content of a directory with <ls>, but how do you actually go to another directory? The answer is <cd> (change directory).
+
+This command needs an argument which will be the directory you want to go to.
+
+For example, <cd /> will get you to the <root> directory, and <cd /usr/bin> will get you to the </usr/bin> directory. In this last case, /usr/bin is called the <path> you want to go to.
+
+</usr/bin> is considered an <absolute path>, which means it is the full path from root.
+
+With <cd>, you can also use <relative paths>, which are the paths derived from the directory you are currently in.
+
+For example, if you are currently in the </usr/bin> directory, and you want to go one folder up (or back, if you will), you can use <cd ..>
+
+This will get you to the </usr> directory.
+
+There are many more options that can be passed to the <cd> command, and if you want to check them out you can use the <man cd> command.
+
