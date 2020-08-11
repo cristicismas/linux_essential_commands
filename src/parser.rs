@@ -1,7 +1,7 @@
 use std::fs;
 use std::process;
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct PageElement {
     pub is_colored: bool,
     pub text: String
@@ -69,4 +69,19 @@ pub fn parse_page(page_number: &usize) -> Vec<PageElement> {
     }
     
     return page_elements;
+}
+
+#[cfg(test)]
+mod tests {
+    use super::PageElement;
+
+    #[test]
+    fn test_add_char_impl() {
+        let mut element = PageElement::new(false, "ABC");
+        element.add_char('D');
+
+        let correct_element = PageElement::new(false, "ABCD");
+
+        assert_eq!(element, correct_element);
+    }
 }
