@@ -10,7 +10,7 @@ use std::process;
 use crossterm::{
     execute,
     terminal::{Clear, ClearType},
-    event::{read, Event, KeyCode},
+    event::{read, Event, KeyCode, KeyEvent, KeyModifiers},
     Result
 };
 
@@ -35,6 +35,17 @@ fn main() -> Result<()> {
 
     loop {
         match read()? {
+            // Handles Control + c
+            Event::Key(KeyEvent {
+                modifiers: KeyModifiers::CONTROL,
+                code,
+            }) => {
+                if code == KeyCode::Char('c') {
+                    next_page(&mut page_number)?;
+                }
+            },
+
+            // Handles Enter
             Event::Key(event) => {
                 if event.code == KeyCode::Enter {
                     next_page(&mut page_number)?;
