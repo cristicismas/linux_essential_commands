@@ -1,0 +1,10 @@
+Making files: <touch>
+
+Alright, so now that we know how to read files, how do we create one?
+
+The answer is <touch>.
+
+As you've probably already guessed, you can use the command like this: <touch myfile>, which will create <myfile> in your current directory.
+
+Of course, you can also create files in other directories, just like you change directories. For example, you can use <touch /myfile> to create <myfile> in your <root> directory.
+
