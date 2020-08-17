@@ -1,0 +1,10 @@
+Reading files: <cat> and <less>
+
+You can use the <cat> command to output a files' contents to the terminal.
+
+To use <cat>, type cat and the file name. For example: <cat sample_text.txt>.
+
+Alternatively, you can use <less>, which is more or less (ha) a fully fledged file reader program.
+
+These programs are probably installed on your systems, but there are also a lot of modern alternatives, most notably <bat>, which you can find installation instructions for at this link: <https://github.com/sharkdp/bat>
+
