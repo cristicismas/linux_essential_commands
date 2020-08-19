@@ -1,0 +1,6 @@
+<Congrats!> You've reached the end of this program.
+
+Now you are aware of some of the most used <linux commands>.
+
+You've still got a long way to go, but now that you have the <basics> down, it's a lot easier to get started with other commands.
+

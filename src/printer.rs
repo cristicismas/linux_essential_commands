@@ -1,4 +1,4 @@
-use super::parser;
+use super::parser::Page;
 use std::io::{stdout, stderr, Write};
 use crossterm::{
     execute,
@@ -6,10 +6,8 @@ use crossterm::{
     Result
 };
 
-pub fn print_page(page_number: &usize) -> Result<()> {
-    let page_elements = parser::parse_page(page_number);
-
-    for element in page_elements {
+pub fn print_page(page: Page) -> Result<()> {
+    for element in page.elements {
         if element.is_colored {
             accent_print(&element.text)?;
         } else {

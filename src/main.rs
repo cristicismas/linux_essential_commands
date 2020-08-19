@@ -3,18 +3,17 @@ mod parser;
 
 use printer::print_page;
 
-use std::io::{stdout, Write};
+use std::io::{stdout, Write, Error};
 use std::env;
 use std::process;
 
 use crossterm::{
     execute,
     terminal::{Clear, ClearType},
-    event::{read, Event, KeyCode, KeyEvent, KeyModifiers},
-    Result
+    event::{read, Event, KeyCode, KeyEvent, KeyModifiers}
 };
 
-fn main() -> Result<()> {
+fn main() -> crossterm::Result<()> {
     clear_all()?;
 
     let mut page_number = 0;
@@ -31,7 +30,7 @@ fn main() -> Result<()> {
         };
     }
 
-    print_page(&page_number)?;
+    parse_and_print_page(&page_number)?;
 
     loop {
         match read()? {
@@ -56,7 +55,7 @@ fn main() -> Result<()> {
     }
 }
 
-fn clear_all() -> Result<()> {
+fn clear_all() -> crossterm::Result<()> {
     execute!(
         stdout(),
         Clear(ClearType::All)
@@ -65,14 +64,35 @@ fn clear_all() -> Result<()> {
     Ok(())
 }
 
-fn next_page(page_number: &mut usize) -> Result<()> {
+fn next_page(page_number: &mut usize) -> crossterm::Result<()> {
     clear_all()?;
 
     *page_number += 1;
-
-    print_page(page_number)?;
+    
+    parse_and_print_page(page_number)?;
 
     println!("\n\nPage {}", page_number);
+
+    Ok(())
+}
+
+fn parse_and_print_page(page_number: &usize) -> crossterm::Result<()> {
+    let path_to_page = format!("pages/page_{}.txt", page_number);
+
+    let page = match parser::parse_page(path_to_page) {
+        Ok(page) => page,
+        Err(_) => {
+            let last_page = parser::parse_page(
+                String::from("pages/end_of_program.txt")
+            ).unwrap();
+
+            print_page(last_page).unwrap();
+        
+            process::exit(1);
+        }
+    };
+
+    print_page(page)?;
 
     Ok(())
 }
