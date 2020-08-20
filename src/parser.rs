@@ -1,5 +1,8 @@
-use std::fs;
 use std::io;
+
+use include_dir::{include_dir, Dir, File};
+
+const PAGES_DIR: Dir = include_dir!("./pages");
 
 pub struct Page {
     pub elements: Vec<PageElement>
@@ -24,10 +27,30 @@ impl PageElement {
     }
 }
 
-pub fn parse_page(path_to_page: String) -> Result<Page, io::Error> {
+fn get_page_content(page_name: String) -> Result<String, io::Error> {
+    let page: Result<File, io::Error> = match PAGES_DIR.get_file(page_name) {
+        Some(file) => Ok(file),
+        None => {
+            let err = io::Error::new(
+                io::ErrorKind::NotFound, "File not found."
+            );
+            
+            return Err(err);
+        }
+    };
+
+    let content = match page?.contents_utf8() {
+        Some(content) => content.to_string(),
+        None => panic!("Cannot read file.")
+    };
+
+    Ok(content)
+}
+
+pub fn parse_page(page_name: String) -> Result<Page, io::Error> {
     let mut page_elements: Vec<PageElement> = vec![];
 
-    let content = fs::read_to_string(path_to_page)?;
+    let content = get_page_content(page_name)?;
 
     for line in content.lines() {
         // If the line contains "<", there is some accent in the page, in which case looping through the chars is necessary.

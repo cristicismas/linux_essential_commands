@@ -77,16 +77,16 @@ fn next_page(page_number: &mut usize) -> crossterm::Result<()> {
 }
 
 fn parse_and_print_page(page_number: &usize) -> crossterm::Result<()> {
-    let path_to_page = format!("pages/page_{}.txt", page_number);
+    let page_name = format!("page_{}.txt", page_number);
 
-    let page = match parser::parse_page(path_to_page) {
+    let page = match parser::parse_page(page_name) {
         Ok(page) => page,
         Err(_) => {
             let last_page = parser::parse_page(
-                String::from("pages/end_of_program.txt")
-            ).unwrap();
+                String::from("end_of_program.txt")
+            )?;
 
-            print_page(last_page).unwrap();
+            print_page(last_page)?;
         
             process::exit(1);
         }
