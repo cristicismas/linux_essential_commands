@@ -3,7 +3,7 @@ mod parser;
 
 use printer::print_page;
 
-use std::io::{stdout, Write, Error};
+use std::io::{stdout, Write};
 use std::env;
 use std::process;
 
