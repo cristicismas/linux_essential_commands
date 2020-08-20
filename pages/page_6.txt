@@ -1,0 +1,12 @@
+Making directories: <mkdir>
+
+I think you know the drill by now, use <mkdir> like the last few commands: <mkdir my_directory>.
+
+You can also use <absolute> and <relative paths> with this command, and to find out more options you can use <man>.
+
+The <manual page> contains many useful <flags>, which you can think of as program <'arguments'>.
+
+You can recognize flags by looking if they are prepended with a <hyphen> (<->)
+
+One very useful flag for this command is <-p>, which helps you create <nested directories>. For example: <mkdir -p first/second/third>.
+
